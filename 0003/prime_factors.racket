@@ -1,0 +1,18 @@
+#lang racket
+(define (factor num)
+  (define (_factor num divisor factors)
+    (let-values ([(q r) (quotient/remainder num divisor)])
+      (when (eq? r 0)
+        (set! num q)
+        (set! factors (append factors (list divisor)))
+      )
+      (if (or (eq? num 1) (eq? num divisor))
+        factors
+        (_factor num (+ divisor 1) factors)
+      )
+    )
+  )
+  (_factor num 2 '())
+)
+
+(factor  600851475143)
