@@ -1,3 +1,4 @@
+#!/usr/bin/env racket
 #lang racket
 (define (is_prime num)
   (define (_is_prime num divisor)
@@ -28,4 +29,13 @@
   (_nth_prime n 2)
 )
 
-(nth_prime 10001)
+
+(define which-prime
+  (command-line
+    #:program "Prime number finder"
+    #:args (number)
+    (string->number number)
+  )
+)
+
+(displayln (nth_prime which-prime))
